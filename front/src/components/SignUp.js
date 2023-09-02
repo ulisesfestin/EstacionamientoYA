@@ -13,7 +13,7 @@ export const SignUp = () => {
       
       const handleForm = async(values) => {
         try {
-          const response = await axios.post('http://localhost:5000/signup', values)
+          const response = await axios.post('http://localhost:5000/auth/signup', values)
           console.log(response.data)
           navigate('/dashboard')
         } catch (error) {
