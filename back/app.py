@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+from models.User import User
 from database import db, FULL_URL_DB
 from flask_migrate import Migrate
 from resources.auth.routes import auth
@@ -23,6 +24,7 @@ app.register_blueprint(auth)
 # def home():
 #     print('home')
 #     return jsonify({'mensaje': 'Home'})
+
 
 
 
