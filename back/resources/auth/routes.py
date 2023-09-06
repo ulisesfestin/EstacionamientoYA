@@ -1,5 +1,5 @@
 from flask import jsonify, request, Blueprint
-from app import db
+from database import db
 from models.User import User
 
 
@@ -40,5 +40,3 @@ def signup():
     db.session.add(user)
     db.session.commit()
     return jsonify({'mensaje': 'Usuario registrado con éxito.'}), 201
-
-

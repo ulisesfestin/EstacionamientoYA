@@ -1,6 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from flask_cors import CORS
-from models.User import User
 from database import db, FULL_URL_DB
 from flask_migrate import Migrate
 from resources.auth.routes import auth
@@ -19,14 +18,6 @@ migrate = Migrate()
 migrate.init_app(app, db)
 
 app.register_blueprint(auth)
-
-# @app.route('/')
-# def home():
-#     print('home')
-#     return jsonify({'mensaje': 'Home'})
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
