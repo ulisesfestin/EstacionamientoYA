@@ -7,22 +7,36 @@ import { Home } from './components/Home';
 import { SignUp } from './components/SignUp';
 import './App.css';
 import { Dashboard } from './components/Dashboard';
+import { PrivateRoutes } from './routes/PrivateRoutes';
+import { PublicRoutes } from './routes/PublicRoutes';
+import { UserContext } from './context/UserContext';
+import { useState } from 'react';
+
+
 
 
 const App = () => {
+
+  const [user, setUser] = useState({
+    role:'',
+    logged:false
+  })
+
   return (
-    <div className='App'>
-      <Navbar />
-      <Routes>
-        <Route exact path='/home' element={<Home />} />
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='' element={<Home />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/signup' element={<SignUp />} />
-        <Route exact path='/dashboard' element={<Dashboard />} />
-      </Routes>
-      <Footer />
-    </div>
+    <>
+      <UserContext.Provider value={{ user, setUser }} >
+        <Navbar />
+        <Routes>
+          {
+            user.logged ? (
+              <Route path="/*" element={<PrivateRoutes />} /> 
+            ):(
+              <Route path="/*" element={<PublicRoutes />} />
+            )
+          } 
+        </Routes>
+      </UserContext.Provider> 
+    </>
   )
 }
 

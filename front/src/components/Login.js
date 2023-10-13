@@ -1,9 +1,15 @@
 import { Field, Form, Formik } from 'formik'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+
+
 
 
 export const Login = () => {
+
+
 
   const navigate = useNavigate();
 
@@ -13,11 +19,17 @@ export const Login = () => {
     password:''
   }
 
+  const { setUser } = useContext(UserContext);
+
   const handleForm = async(values) => {
     // console.log('values:', values)
     try {
       const response = await axios.post('http://localhost:5000/auth/login', values)
       console.log(response.data)
+      setUser({
+        logged:true,
+        role: response.data.role
+      })
       navigate('/dashboard')
     } catch (error) {
       console.log(error)
