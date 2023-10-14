@@ -3,16 +3,12 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-
-
+import Swal from 'sweetalert2';
 
 
 export const Login = () => {
 
-
-
   const navigate = useNavigate();
-
 
   const initialValues = {
     email:'',
@@ -26,13 +22,28 @@ export const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/auth/login', values)
       console.log(response.data)
+      const { role } = response.data
       setUser({
         logged:true,
-        role: response.data.role
+        role: role
       })
-      navigate('/dashboard')
+      Swal.fire({
+        icon: 'success',
+        title: 'Inicio de sesión exitoso!',
+        text: 'Nos alegra verte nuevamente!',
+        showConfirmButton: false,
+        timer: 3000
+      })
+      navigate('/parkings')
     } catch (error) {
       console.log(error)
+      // Swal.fire({
+      //   icon: 'error',
+      //   title: 'Oops...',
+      //   text: 'Parece que ocurrió un error al iniciar sesión! Intenta nuevamente.',
+      //   // showConfirmButton: true,
+      //   confirmButtonText: 'Ok'
+      // })
     }
   }
   

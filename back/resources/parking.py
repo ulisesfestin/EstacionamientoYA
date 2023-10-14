@@ -21,7 +21,7 @@ class ParkingList(Resource):
 
     def post(self):
         code = request.json['code']
-        availability = request.json['availability']
+        availability = True
         price_per_hour = request.json['price_per_hour']
 
         # Verificamos que no haya otro estacionamiento con el mismo code

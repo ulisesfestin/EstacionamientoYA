@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import Swal from 'sweetalert2';
 
 
 
@@ -23,13 +24,28 @@ export const SignUp = () => {
         try {
           const response = await axios.post('http://localhost:5000/auth/signup', values)
           console.log(response.data)
+          const { role } = response.data
           setUser({
             logged:true,
-            role: response.data.role
+            role: role
           })
-          navigate('/dashboard')
+          Swal.fire({
+            icon: 'success',
+            title: 'Registro exitoso!',
+            text: 'Bienvenido a EstacionamientoYA!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          navigate('/parkings')
         } catch (error) {
           console.log(error)
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Oops...',
+          //   text: 'Parece que ocurrió un error al registrarte! Intenta nuevamente.',
+          //   showConfirmButton: true,
+          //   confirmButtonText: 'Ok'
+          // })
         }
       }
 
