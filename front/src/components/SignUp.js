@@ -6,8 +6,6 @@ import { UserContext } from '../context/UserContext';
 import Swal from 'sweetalert2';
 
 
-
-
 export const SignUp = () => {
 
   const { setUser } = useContext(UserContext);
@@ -31,8 +29,8 @@ export const SignUp = () => {
           })
           Swal.fire({
             icon: 'success',
-            title: 'Registro exitoso!',
-            text: 'Bienvenido a EstacionamientoYA!',
+            title: 'Successful registration!!',
+            text: 'Welcome to EstacionamientoYA!',
             showConfirmButton: false,
             timer: 1500
           })
@@ -50,16 +48,16 @@ export const SignUp = () => {
       }
 
   return (
-    <div>
-      <div className='row justify-content-center'> 
-        <div className='col-md-6'>
-        <h1>Sign up</h1>
+    <div className='container-xxl' id='container'>
+      <div className='row justify-content-center' id='loginform'> 
+        <div className='col'>
+        <h1>Create your account</h1>
         <Formik
           initialValues={initialValues}
           onSubmit={handleForm}
         >
           <Form> 
-                <div className="form-floating">
+                <div className="form-floating" id='input'>
                   <Field 
                     type="name" 
                     className="form-control" 
@@ -69,7 +67,7 @@ export const SignUp = () => {
                   />
                   <label htmlFor="floatingInput">Name</label>
                 </div>
-                <div className="form-floating">
+                <div className="form-floating" id='input'>
                   <Field 
                     type="email" 
                     className="form-control" 
@@ -79,7 +77,7 @@ export const SignUp = () => {
                   />
                   <label htmlFor="floatingInput">Email address</label>
                 </div>
-                <div className="form-floating">
+                <div className="form-floating" id='input'>
                   <Field 
                     type="password" 
                     className="form-control" 
@@ -90,7 +88,7 @@ export const SignUp = () => {
                   <label htmlFor="floatingPassword">Password</label>
                 </div>
 
-                <button className="btn btn-primary w-100 py-2" type="submit" onClick={handleForm}>Sign up</button>
+                <button className="btn btn-primary w-100 py-2" type="submit" onClick={handleForm}>Get started!</button>
           </Form>
         </Formik>
       </div>

@@ -3,7 +3,7 @@ from flask_cors import CORS
 from database import db, FULL_URL_DB
 from flask_migrate import Migrate
 from resources.auth.routes import auth
-from resources.parking import ParkingList
+from resources.parkings_list import ParkingsList
 from flask_restful import Api
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ migrate.init_app(app, db)
 app.register_blueprint(auth)
 
 # Resources
-api.add_resource(ParkingList, '/parking')
+api.add_resource(ParkingsList, '/parkings')
 
 if __name__ == '__main__':
     app.run(debug=True)

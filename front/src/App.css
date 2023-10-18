@@ -5,3 +5,22 @@
   background-color: #222;
 }
 
+/* Login and SingUp form */
+#container {
+  text-align: center;
+  background-color: rgb(173, 94, 94);
+  padding: 10%;
+
+}
+
+#loginform {
+  background-color: rgb(255, 255, 255);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 600px;
+  margin: 0 auto;
+}
+
+#input {
+  margin: 2rem 1rem;
+}

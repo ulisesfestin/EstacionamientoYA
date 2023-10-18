@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 
-export const ParkingList = () => {
+export const ParkingsList = () => {
     const { user } = useContext(UserContext);
 
     const [parkings, setParkings] = useState([]);
@@ -13,7 +13,7 @@ export const ParkingList = () => {
 
     const fetchParkings = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/parking');
+            const response = await axios.get('http://localhost:5000/parkings');
             console.log(response)
             setParkings(response.data);
         }

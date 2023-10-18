@@ -20,7 +20,7 @@ export const Navbar = () => {
   return (
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark" style={{backgroundColor: 'black'}}>
-            <a className="navbar-braknd" href="/#" > <img src={require(`../imagenes/um.png`) }  alt="" width="70px" height="70px" /></a> 
+            <a className="navbar-braknd" href="/home" > <img src={require(`../imagenes/um.png`) }  alt="" width="70px" height="70px" /></a> 
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -69,10 +69,10 @@ export const Navbar = () => {
                                 <Link className="nav-link" to="/home">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" exact='true' to="/login">Login</Link>
+                                <Link className="nav-link" exact='true' to="/login">Log In</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/signup">SignUp</Link>
+                                <Link className="nav-link" to="/signup">Sign Up</Link>
                             </li>
                         </ul>
                     ) 
