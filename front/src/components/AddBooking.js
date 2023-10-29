@@ -2,20 +2,24 @@ import axios from 'axios';
 import { Field, Form, Formik } from 'formik'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 
 export const AddBooking = () => {
+
+    const { user } = useContext(UserContext);
+
+    const idusuario = user.id
 
     const navigate = useNavigate();
 
     const initialValues = {
         parking_id: '1',
-        user_id:'1',
+        user_id: user.id,
         amount:'1',
         entry:'',
         exit:'',
-        status:'1'
-
     }
 
     const handleSubmit = async( values) => {
@@ -36,9 +40,10 @@ export const AddBooking = () => {
     }
     return (
         <div>
+            <h1>{idusuario}</h1>
             <div className='row justify-content-center'> 
             <div className='col-md-6'>
-            <h1>Crear reserva</h1>
+            <h1>Crear reserva </h1>
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}

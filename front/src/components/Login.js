@@ -25,7 +25,8 @@ export const Login = () => {
       const { role } = response.data
       setUser({
         logged:true,
-        role: role
+        role: role,
+        id: response.data.id
       })
       Swal.fire({
         icon: 'success',

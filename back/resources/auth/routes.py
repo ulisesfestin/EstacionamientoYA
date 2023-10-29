@@ -15,7 +15,7 @@ def login():
     userDB = User.query.filter_by(email=email).first()
     
     if userDB and userDB.password == password:
-        return jsonify(role=userDB.role), 200
+        return jsonify(role=userDB.role, id=userDB.id), 200
     else:
         response = {'Message':'Error'}
         return jsonify(response), 400

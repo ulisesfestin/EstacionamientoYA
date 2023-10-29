@@ -12,7 +12,7 @@ class BookingCRUD(Resource):
         parking_id = request.json['parking_id']
         user_id = request.json['user_id']
         amount = request.json['amount']
-        status = request.json['status']
+        status = 'ocupado'
 
         booking = Booking(entry=entry, exit=exit, parking_id=parking_id, user_id=user_id, amount=amount, status=status)
 
