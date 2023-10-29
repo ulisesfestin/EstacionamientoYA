@@ -6,7 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
+
+
+
+
 export const ParkingsList = () => {
+
     const { user } = useContext(UserContext);
 
     const [parkings, setParkings] = useState([]);
@@ -32,7 +38,7 @@ export const ParkingsList = () => {
     const addBooking = async (parkingId, parkingPrice) => {
         try {
             console.log('id del estacionamiento:',parkingId, '  precio del estacionamiento:',parkingPrice)
-            navigate('/addbooking')
+            navigate('/addbooking', {state: { parkingId, parkingPrice}});
         }
         catch (error) {
             console.log(error);

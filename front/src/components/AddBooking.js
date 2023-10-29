@@ -4,20 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+
 
 
 export const AddBooking = () => {
 
-    const { user } = useContext(UserContext);
+    const location = useLocation();
+    const { parkingId, parkingPrice } = location.state;
 
-    const idusuario = user.id
+    const { user } = useContext(UserContext);
 
     const navigate = useNavigate();
 
     const initialValues = {
-        parking_id: '1',
+        parking_id: parkingId,
         user_id: user.id,
-        amount:'1',
+        amount: parkingPrice,
         entry:'',
         exit:'',
     }
@@ -40,7 +44,6 @@ export const AddBooking = () => {
     }
     return (
         <div>
-            <h1>{idusuario}</h1>
             <div className='row justify-content-center'> 
             <div className='col-md-6'>
             <h1>Crear reserva </h1>
