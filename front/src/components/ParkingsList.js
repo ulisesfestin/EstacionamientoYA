@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 export const ParkingsList = () => {
     const { user } = useContext(UserContext);
 
     const [parkings, setParkings] = useState([]);
+
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         fetchParkings();
@@ -21,6 +28,16 @@ export const ParkingsList = () => {
             console.log(error);
         }
     };
+
+    const addBooking = async (parkingId, parkingPrice) => {
+        try {
+            console.log('id del estacionamiento:',parkingId, '  precio del estacionamiento:',parkingPrice)
+            navigate('/addbooking')
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 
 
     return (
@@ -48,7 +65,7 @@ export const ParkingsList = () => {
                                             user.role === '2' ? (
                                                 <div>
                                                     <td> 
-                                                        <button type="button" className="btn btn-success" > Reservar </button>
+                                                        <button type="button" className="btn btn-success" onClick={() => addBooking(parking.id, parking.price_per_hour)} >Reservar</button>
                                                     </td>
                                                 </div>
                                             // admin puede editar y eliminar

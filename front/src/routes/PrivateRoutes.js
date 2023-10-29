@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes, Navigate} from "react-router-dom";
+import { Route, Navigate, Routes} from "react-router-dom";
 
 import { Dashboard } from '../components/Dashboard'
 import { Parkings } from '../components/Parkings';
@@ -8,6 +8,7 @@ import { MyBooking } from '../components/MyBooking';
 import { ReservationHistory } from '../components/ReservationHistory';
 import { AddParking } from '../components/AddParking';
 import { Home } from '../components/Home';
+import { AddBooking } from '../components/AddBooking';
 
 
 export const PrivateRoutes = () => {
@@ -19,9 +20,10 @@ export const PrivateRoutes = () => {
         <Route path='/parkings' element={<Parkings />} />
         <Route path='/analytics' element={<Analytics />} />
         <Route path='/mybooking' element={<MyBooking />} />
+        <Route path='/addbooking' element={<AddBooking />} />
         <Route path='/reservationhistory' element={<ReservationHistory />} />
         <Route path='/addparking' element={<AddParking />} />
         <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>
-  )
-}
+  );
+};
