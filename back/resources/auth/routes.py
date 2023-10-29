@@ -39,4 +39,4 @@ def signup():
     user = User(name=name, email=email, password=password, role=role)
     db.session.add(user)
     db.session.commit()
-    return jsonify({'mensaje': 'Usuario registrado con éxito.'}), 200
+    return jsonify(role=role), 200

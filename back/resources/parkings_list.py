@@ -4,7 +4,7 @@ from models import Parking
 from database import db
 
 
-class ParkingList(Resource):
+class ParkingsList(Resource):
     def get(self):
         parkings = db.session.query(Parking).all()
         result = []

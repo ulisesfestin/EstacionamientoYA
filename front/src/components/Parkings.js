@@ -1,11 +1,11 @@
 import React from 'react'
-import { ParkingList } from './ParkingList'
+import { ParkingsList } from './ParkingsList'
 
 export const Parkings = () => {
   return (
     <div>
       <h1>Estacionamientos</h1>
-        <ParkingList />
+        <ParkingsList />
     </div>
   )
 }

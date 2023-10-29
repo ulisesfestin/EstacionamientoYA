@@ -29,8 +29,8 @@ export const Login = () => {
       })
       Swal.fire({
         icon: 'success',
-        title: 'Inicio de sesión exitoso!',
-        text: 'Nos alegra verte nuevamente!',
+        title: 'Successful login!!',
+        text: 'We are glad to see you again!!',
         showConfirmButton: false,
         timer: 3000
       })
@@ -49,16 +49,16 @@ export const Login = () => {
   
 
   return (
-    <div>
-      <div className='row justify-content-center'> 
-        <div className='col-md-6'>
-        <h1>Inicio de sesion</h1>
+    <div className='container-xxl' id='container'>
+      <div className='row justify-content-center' id='loginform'> 
+        <div className='col'>
+        <h1>Login to EstacionamientoYA</h1>
         <Formik
           initialValues={initialValues}
           onSubmit={handleForm}
         >
           <Form> 
-                <div className="form-floating">
+                <div className="form-floating" id='input'>
                   <Field 
                     type="email" 
                     className="form-control" 
@@ -68,7 +68,7 @@ export const Login = () => {
                   />
                   <label htmlFor="floatingInput">Email address</label>
                 </div>
-                <div className="form-floating">
+                <div className="form-floating" id='input'>
                   <Field 
                     type="password" 
                     className="form-control" 
