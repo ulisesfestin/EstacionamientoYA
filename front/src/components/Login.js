@@ -37,13 +37,13 @@ export const Login = () => {
       navigate('/parkings')
     } catch (error) {
       console.log(error)
-      // Swal.fire({
-      //   icon: 'error',
-      //   title: 'Oops...',
-      //   text: 'Parece que ocurrió un error al iniciar sesión! Intenta nuevamente.',
-      //   // showConfirmButton: true,
-      //   confirmButtonText: 'Ok'
-      // })
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Parece que ocurrió un error al iniciar sesión! Intenta nuevamente.',
+        // showConfirmButton: true,
+        confirmButtonText: 'Ok'
+      })
     }
   }
   
