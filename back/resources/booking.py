@@ -2,14 +2,17 @@ from flask_restful import Resource
 from flask import request, jsonify
 from models import Booking
 from database import db
+from models.User import User
 
 
 class BookingCRUD(Resource):
 
-    def get(self):
-        Bookings = db.session.query(Booking).all()
+    def get(self, user_id):
+
+        bookings = db.session.query(Booking).filter(Booking.user_id == user_id).all()
+        
         result = []
-        for booking in Bookings:
+        for booking in bookings:
             result.append({
                 'id': booking.id,
                 'user_id': booking.user_id,
