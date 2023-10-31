@@ -5,6 +5,23 @@ from database import db
 
 
 class BookingCRUD(Resource):
+
+    def get(self):
+        Bookings = db.session.query(Booking).all()
+        result = []
+        for booking in Bookings:
+            result.append({
+                'id': booking.id,
+                'user_id': booking.user_id,
+                'parking_id': booking.parking_id,
+                'entry': booking.entry,
+                'exit': booking.exit,
+                'amount': booking.amount,
+                'status': booking.status
+            })
+        response = jsonify(result)
+        response.status_code = 200
+        return response
     
     def post(self):
         entry = request.json['entry']
