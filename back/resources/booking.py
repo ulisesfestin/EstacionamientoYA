@@ -1,26 +1,26 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from models import Booking
+from models import Booking, User, Parking
 from database import db
-from models.User import User
 
 
 class BookingCRUD(Resource):
 
-    def get(self, user_id):
-
-        bookings = db.session.query(Booking).filter(Booking.user_id == user_id).all()
+    def get(self, id):
+        
+        user = User.query.get(id)
+        bookings = Booking.query.filter_by(user=user).all()
         
         result = []
         for booking in bookings:
+            parking = Parking.query.get(booking.parking_id)
             result.append({
                 'id': booking.id,
-                'user_id': booking.user_id,
-                'parking_id': booking.parking_id,
+                'name': user.name,
+                'parking_code': parking.code,
                 'entry': booking.entry,
                 'exit': booking.exit,
-                'amount': booking.amount,
-                'status': booking.status
+                'amount': booking.amount
             })
         response = jsonify(result)
         response.status_code = 200
@@ -32,10 +32,19 @@ class BookingCRUD(Resource):
         parking_id = request.json['parking_id']
         user_id = request.json['user_id']
         amount = request.json['amount']
-        status = 'ocupado'
+        status = 'En curso'
 
-        booking = Booking(entry=entry, exit=exit, parking_id=parking_id, user_id=user_id, amount=amount, status=status)
+        user = User.query.get(user_id)
+        parking = Parking.query.get(parking_id)
+
+        booking = Booking(user=user, parking=parking, entry=entry, exit=exit, amount=amount, status=status)
 
         db.session.add(booking)
         db.session.commit()
         return jsonify({"mensaje": "Reserva creada con éxito."})
+    
+    def delete(self, id):
+        booking = Booking.query.get(id)
+        db.session.delete(booking)
+        db.session.commit()
+        return jsonify({"mensaje": "Reserva eliminada con éxito."})

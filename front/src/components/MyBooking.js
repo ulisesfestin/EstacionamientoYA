@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+import $wal from 'sweetalert2';
 
 
 
@@ -28,6 +29,22 @@ export const MyBooking = () => {
     }
   };
 
+  const DeleteBooking = async (booking_id) => {
+    try {
+        await axios.delete(`http://localhost:5000/booking/${booking_id}`);
+        $wal.fire({
+            icon: 'success',
+            title: 'Reserva eliminada correctamente',
+            showConfirmButton: false,
+            timer: 1800
+        })
+        fetchBookings();
+    }
+    catch (error) {
+        console.log(error);
+    }
+  }
+
 
   return (
     <div>
@@ -36,41 +53,39 @@ export const MyBooking = () => {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">user_id</th>
-                            <th scope="col">parking_id</th>
-                            <th scope="col">entry</th>
-                            <th scope="col">exit</th>
-                            <th scope="col">amount</th>
-                            <th scope="col">status</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Parking code</th>
+                            <th scope="col">Entry</th>
+                            <th scope="col">Exit</th>
+                            <th scope="col">Amount</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             bookings.map(booking => (
                                 <tr key={booking.id}>
-                                    <td>{booking.user_id}</td>
-                                    <td>{booking.parking_id}</td>
+                                    <td>{booking.name}</td>
+                                    <td>{booking.parking_code}</td>
                                     <td>{booking.entry}</td>
                                     <td>{booking.exit}</td>
                                     <td>{booking.amount}</td>
-                                    <td>{booking.status}</td>
                                     
                                     {
                                         // usuario comun solo puede eliminar su reserva
                                         user.role === '2' ? (
                                             <div>
                                                 <td> 
-                                                    <button type="button" className="btn btn-danger" >Eliminar</button>
+                                                    <button type="button" className="btn btn-danger" onClick={() => DeleteBooking(booking.id)}>Delete</button>
                                                 </td>
                                             </div>
                                         // admin puede editar y eliminar
                                         ):(
                                             <div>
                                                 <td> 
-                                                    <button type="button" className="btn btn-warning"> Editar </button>
+                                                    <button type="button" className="btn btn-warning">Edit</button>
                                                 </td>
                                                 <td> 
-                                                    <button type="button" className="btn btn-danger">Eliminar</button>
+                                                    <button type="button" className="btn btn-danger" onClick={() => DeleteBooking(booking.id)}>Delete</button>
                                                 </td>  
                                             </div>
                                         )

@@ -39,4 +39,7 @@ def signup():
     user = User(name=name, email=email, password=password, role=role)
     db.session.add(user)
     db.session.commit()
-    return jsonify(role=role), 200
+
+    registeredEmail = User.query.filter_by(email=email).first()
+    idUser = registeredEmail.id
+    return jsonify(role=role, id=idUser), 200

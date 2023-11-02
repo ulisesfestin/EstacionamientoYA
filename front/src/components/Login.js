@@ -22,11 +22,11 @@ export const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/auth/login', values)
       console.log(response.data)
-      const { role } = response.data
+      const { role, id } = response.data
       setUser({
         logged:true,
         role: role,
-        id: response.data.id
+        id: id
       })
       Swal.fire({
         icon: 'success',
@@ -38,13 +38,13 @@ export const Login = () => {
       navigate('/parkings')
     } catch (error) {
       console.log(error)
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Parece que ocurrió un error al iniciar sesión! Intenta nuevamente.',
-        // showConfirmButton: true,
-        confirmButtonText: 'Ok'
-      })
+      // Swal.fire({
+      //   icon: 'error',
+      //   title: 'Oops...',
+      //   text: 'Parece que ocurrió un error al iniciar sesión! Intenta nuevamente.',
+      //   // showConfirmButton: true,
+      //   confirmButtonText: 'Ok'
+      // })
     }
   }
   

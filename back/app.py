@@ -25,7 +25,7 @@ app.register_blueprint(auth)
 
 # Resources
 api.add_resource(ParkingsList, '/parkings')
-api.add_resource(BookingCRUD, '/booking/<int:user_id>')
+api.add_resource(BookingCRUD,'/booking', '/booking/<int:id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
