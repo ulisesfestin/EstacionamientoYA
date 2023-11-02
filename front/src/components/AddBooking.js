@@ -54,7 +54,7 @@ export const AddBooking = () => {
                 <Form> 
                     <div className="form-floating">
                         <Field 
-                        type="text" 
+                        type="datetime-local" 
                         className="form-control" 
                         id="floatingName" 
                         placeholder="fecha y hora de entrada" 
@@ -64,7 +64,7 @@ export const AddBooking = () => {
                     </div>
                     <div className="form-floating">
                         <Field 
-                        type="text" 
+                        type="datetime-local" 
                         className="form-control" 
                         id="floatingInput" 
                         placeholder="fecha y hora de salida"
