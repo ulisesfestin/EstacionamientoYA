@@ -2,13 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
-
-
-
+import $wal from 'sweetalert2';
 
 
 export const ParkingsList = () => {
@@ -45,6 +39,21 @@ export const ParkingsList = () => {
         }
     }
 
+    const deleteParking = async (parkingId) => {
+        try {
+            await axios.delete(`http://localhost:5000/parking/${parkingId}`);
+            $wal.fire({
+                icon: 'success',
+                title: 'Estacionamiento eliminado correctamente',
+                showConfirmButton: false,
+                timer: 1800
+            })
+            fetchParkings();
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div>
@@ -81,7 +90,7 @@ export const ParkingsList = () => {
                                                         <button type="button" className="btn btn-warning"> Editar </button>
                                                     </td>
                                                     <td> 
-                                                        <button type="button" className="btn btn-danger">Eliminar</button>
+                                                        <button type="button" className="btn btn-danger" onClick={() => deleteParking(parking.id)}>Eliminar</button>
                                                     </td>  
                                                 </div>
                                             )

@@ -70,26 +70,12 @@ export const MyBooking = () => {
                                     <td>{booking.exit}</td>
                                     <td>{booking.amount}</td>
                                     
-                                    {
-                                        // usuario comun solo puede eliminar su reserva
-                                        user.role === '2' ? (
-                                            <div>
-                                                <td> 
-                                                    <button type="button" className="btn btn-danger" onClick={() => DeleteBooking(booking.id)}>Delete</button>
-                                                </td>
-                                            </div>
-                                        // admin puede editar y eliminar
-                                        ):(
-                                            <div>
-                                                <td> 
-                                                    <button type="button" className="btn btn-warning">Edit</button>
-                                                </td>
-                                                <td> 
-                                                    <button type="button" className="btn btn-danger" onClick={() => DeleteBooking(booking.id)}>Delete</button>
-                                                </td>  
-                                            </div>
-                                        )
-                                    }
+                                    <div>
+                                        <td> 
+                                            <button type="button" className="btn btn-danger" onClick={() => DeleteBooking(booking.id)}>Delete</button>
+                                        </td>
+                                    </div>
+                                    
                                 </tr>
                             ))
                         }  

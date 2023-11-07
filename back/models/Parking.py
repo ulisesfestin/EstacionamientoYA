@@ -7,7 +7,7 @@ class Parking(db.Model):
     availability = db.Column(db.Boolean)
     price_per_hour = db.Column(db.Float)
 
-    parking_booking = db.relationship('Booking', backref='parking')
+    parking_booking = db.relationship('Booking', backref='parking', cascade='all, delete-orphan')
 
     def __str__(self):
         return (

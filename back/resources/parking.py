@@ -36,3 +36,11 @@ class ParkingsList(Resource):
         db.session.add(parking)
         db.session.commit()
         return jsonify({"mensaje": "Estacionamiento creado con éxito."})
+
+
+class ParkingList(Resource):
+    def delete(self, id):
+        parking = Parking.query.get_or_404(id)
+        db.session.delete(parking)
+        db.session.commit()
+        return jsonify({"mensaje": "Estacionamiento eliminado con éxito."})

@@ -48,3 +48,26 @@ class BookingCRUD(Resource):
         db.session.delete(booking)
         db.session.commit()
         return jsonify({"mensaje": "Reserva eliminada con éxito."})
+    
+
+class BookingsList(Resource):
+    
+    def get(self):
+        bookings = Booking.query.all()
+        result = []
+        for booking in bookings:
+            user = User.query.get(booking.user_id)
+            parking = Parking.query.get(booking.parking_id)
+            result.append({
+                'id': booking.id,
+                'name': user.name,
+                'parking_code': parking.code,
+                'entry': booking.entry,
+                'exit': booking.exit,
+                'amount': booking.amount,
+                'status': booking.status
+            })
+        response = jsonify(result)
+        response.status_code = 200
+        return response
+    

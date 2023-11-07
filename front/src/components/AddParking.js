@@ -16,7 +16,7 @@ export const AddParking = () => {
     const handleSubmit = async( values) => {
 
         try {
-            const response = await axios.post('http://localhost:5000/parking', values)
+            const response = await axios.post('http://localhost:5000/parkings', values)
             console.log(response.data)
             Swal.fire({
                 icon: 'success',
