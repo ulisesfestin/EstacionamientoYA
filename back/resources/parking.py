@@ -44,3 +44,14 @@ class ParkingList(Resource):
         db.session.delete(parking)
         db.session.commit()
         return jsonify({"mensaje": "Estacionamiento eliminado con éxito."})
+    
+    def put(self, id):
+        parking = Parking.query.get_or_404(id)
+        parking.code = request.json.get('code', parking.code)
+        parking.availability = request.json.get('availability', parking.availability)
+        parking.price_per_hour = request.json.get('price_per_hour', parking.price_per_hour)
+
+        print(parking.code, parking.availability, parking.price_per_hour)
+
+        db.session.commit()
+        return jsonify({"mensaje": "Estacionamiento actualizado con éxito."})
