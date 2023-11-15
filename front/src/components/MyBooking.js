@@ -15,8 +15,8 @@ export const MyBooking = () => {
 
 
   useEffect(() => {
-      fetchBookings();
-    }, []);
+    fetchBookings();
+  }, []);
 
   const fetchBookings = async () => {
     try {
@@ -48,6 +48,7 @@ export const MyBooking = () => {
 
   return (
     <div>
+        <h1>Mis reservas</h1>
         <div className='row'>
             <div className='col-md-6'>
                 <table className="table">

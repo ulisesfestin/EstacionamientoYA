@@ -38,13 +38,6 @@ export const SignUp = () => {
           navigate('/parkings')
         } catch (error) {
           console.log(error)
-          // Swal.fire({
-          //   icon: 'error',
-          //   title: 'Oops...',
-          //   text: 'Parece que ocurrió un error al registrarte! Intenta nuevamente.',
-          //   showConfirmButton: true,
-          //   confirmButtonText: 'Ok'
-          // })
         }
       }
 

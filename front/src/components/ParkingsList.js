@@ -119,7 +119,7 @@ export const ParkingsList = () => {
                                             ):(
                                                 <div>
                                                     <td> 
-                                                        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editJobModal" onClick={() => onEditParking(parking)}> Editar </button>
+                                                        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editParkingModal" onClick={() => onEditParking(parking)}> Editar </button>
                                                     </td>
                                                     <td> 
                                                         <button type="button" className="btn btn-danger" onClick={() => deleteParking(parking.id)}>Eliminar</button>
@@ -135,7 +135,7 @@ export const ParkingsList = () => {
                     </table>
                 </div>
             </div>
-            <div className="modal fade" id="editJobModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="editParkingModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                     <div className="modal-header">
@@ -145,24 +145,13 @@ export const ParkingsList = () => {
                     <div className="modal-body">
                         <div className='row'>
                             <div className='col-md-4'>
-                                <label>Codigo de estacionamiento</label><br></br>
+                                <label>Código de estacionamiento</label><br></br>
                                 <input
                                     type="text"
                                     name="code"
                                     value={editedParking.code}
                                     onChange={handleInputChange}
-                                    placeholder="Code"
-                                />
-                            </div>
-                            <div className='col-md-2'></div>
-                            <div className='col-md-4'>
-                                <label>Precio por hora</label><br></br>
-                                <input
-                                    type="number"
-                                    name="price_per_hour"
-                                    value={editedParking.price_per_hour}
-                                    onChange={handleInputChange}
-                                    placeholder="Price per hour"
+                                    placeholder="Código"
                                 />
                             </div>
                             <div className='col-md-2'></div>
@@ -173,6 +162,17 @@ export const ParkingsList = () => {
                                     name="availability"
                                     checked={editedParking.availability}
                                     onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className='col-md-2'></div>
+                            <div className='col-md-4'>
+                                <label>Precio por hora</label><br></br>
+                                <input
+                                    type="number"
+                                    name="price_per_hour"
+                                    value={editedParking.price_per_hour}
+                                    onChange={handleInputChange}
+                                    placeholder="Precio por hora"
                                 />
                             </div>
                         </div>

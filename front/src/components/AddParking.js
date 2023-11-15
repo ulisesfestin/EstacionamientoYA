@@ -30,7 +30,7 @@ export const AddParking = () => {
         }
     }
     return (
-        <div>
+        <div className='container-fluid p-3'>
             <div className='row justify-content-center'> 
             <div className='col-md-6'>
             <h1>Crear estacionamiento</h1>

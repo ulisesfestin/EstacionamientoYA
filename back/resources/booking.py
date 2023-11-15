@@ -49,6 +49,15 @@ class BookingCRUD(Resource):
         db.session.commit()
         return jsonify({"mensaje": "Reserva eliminada con éxito."})
     
+    def put(self, id):
+        booking = Booking.query.get_or_404(id)
+        booking.entry = request.json.get('entry', booking.entry)
+        booking.exit = request.json.get('exit', booking.exit)
+        booking.amount = request.json.get('amount', booking.amount)
+        booking.status = request.json.get('status', booking.status)
+
+        db.session.commit()
+        return jsonify({'mensaje': 'Reserva editada con éxito.'})
 
 class BookingsList(Resource):
     

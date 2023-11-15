@@ -35,16 +35,13 @@ export const Login = () => {
         showConfirmButton: false,
         timer: 3000
       })
-      navigate('/parkings')
+      if (role === '1') {
+        navigate('/dashboard');
+      } else {
+        navigate('/parkings');
+      }
     } catch (error) {
       console.log(error)
-      // Swal.fire({
-      //   icon: 'error',
-      //   title: 'Oops...',
-      //   text: 'Parece que ocurrió un error al iniciar sesión! Intenta nuevamente.',
-      //   // showConfirmButton: true,
-      //   confirmButtonText: 'Ok'
-      // })
     }
   }
   
