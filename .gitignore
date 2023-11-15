@@ -160,3 +160,6 @@ yarn-error.log*
 
 # database
 migrations/
+
+#vscode workspace
+*.code-workspace

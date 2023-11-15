@@ -1,10 +1,14 @@
-from app import db
+from database import db
 
 class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250))
     email = db.Column(db.String(250))
     password = db.Column(db.String(250))
+    role = db.Column(db.String(20))
+
+    user_booking = db.relationship('Booking', backref='user', cascade='all, delete-orphan')
 
     def __str__(self):
         return (
@@ -12,4 +16,5 @@ class User(db.Model):
             f'name: {self.name}, '
             f'email: {self.email}, '
             f'password: {self.password}, '
+            f'role: {self.role}, '
         )

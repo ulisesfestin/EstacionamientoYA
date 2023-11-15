@@ -1,24 +1,45 @@
 import { Field, Form, Formik } from 'formik'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+import Swal from 'sweetalert2';
 
 
 export const Login = () => {
 
   const navigate = useNavigate();
 
-
   const initialValues = {
     email:'',
     password:''
   }
+
+  const { setUser } = useContext(UserContext);
 
   const handleForm = async(values) => {
     // console.log('values:', values)
     try {
       const response = await axios.post('http://localhost:5000/auth/login', values)
       console.log(response.data)
-      navigate('/dashboard')
+      const { role, id } = response.data
+      setUser({
+        logged:true,
+        role: role,
+        id: id
+      })
+      Swal.fire({
+        icon: 'success',
+        title: 'Successful login!!',
+        text: 'We are glad to see you again!!',
+        showConfirmButton: false,
+        timer: 3000
+      })
+      if (role === '1') {
+        navigate('/dashboard');
+      } else {
+        navigate('/parkings');
+      }
     } catch (error) {
       console.log(error)
     }
@@ -26,16 +47,16 @@ export const Login = () => {
   
 
   return (
-    <div>
-      <div className='row justify-content-center'> 
-        <div className='col-md-6'>
-        <h1>Inicio de sesion</h1>
+    <div className='container-xxl' id='container'>
+      <div className='row justify-content-center' id='loginform'> 
+        <div className='col'>
+        <h1>Login to EstacionamientoYA</h1>
         <Formik
           initialValues={initialValues}
           onSubmit={handleForm}
         >
           <Form> 
-                <div className="form-floating">
+                <div className="form-floating" id='input'>
                   <Field 
                     type="email" 
                     className="form-control" 
@@ -45,7 +66,7 @@ export const Login = () => {
                   />
                   <label htmlFor="floatingInput">Email address</label>
                 </div>
-                <div className="form-floating">
+                <div className="form-floating" id='input'>
                   <Field 
                     type="password" 
                     className="form-control" 

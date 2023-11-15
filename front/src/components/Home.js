@@ -1,11 +1,12 @@
 import React from 'react'
-
+import './Home.css'
+import { Carousel } from './Carousel'
 
 
 export const Home = () => {
   return (
     <div>
-      {/* Diseño del Home       */}
+      <Carousel />
     </div>
   )
 }

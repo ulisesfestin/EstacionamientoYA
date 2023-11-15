@@ -12,14 +12,13 @@ def login():
     email = data.get('email')
     password = data.get('password')
 
-    emailDb = User.query.filter_by(email=email).first()
+    userDB = User.query.filter_by(email=email).first()
     
-    if emailDb and emailDb.password == password:
-        response = {'Mensaje':'Inicio de sesión exitoso.'}
-        return jsonify(response), 201
+    if userDB and userDB.password == password:
+        return jsonify(role=userDB.role, id=userDB.id), 200
     else:
         response = {'Message':'Error'}
-        return jsonify(response), 401
+        return jsonify(response), 400
 
 @auth.route('/signup', methods=['POST'])
 def signup():
@@ -27,9 +26,20 @@ def signup():
     name = data.get('name')
     email = data.get('email')
     password = data.get('password')
-    
+    role = '2'
 
-    user = User(name=name, email=email, password=password)
+    # Verificamos si el correo electrónico ya existe
+    query = db.session.query(User).filter(User.email == email)
+    user = query.first()
+    
+    if user is not None:
+        # El correo electrónico ya existe
+        return jsonify({'mensaje': 'El correo electrónico ya está registrado.'}), 400
+
+    user = User(name=name, email=email, password=password, role=role)
     db.session.add(user)
     db.session.commit()
-    return jsonify({'mensaje': 'Usuario registrado con éxito.'}), 201
+
+    registeredEmail = User.query.filter_by(email=email).first()
+    idUser = registeredEmail.id
+    return jsonify(role=role, id=idUser), 200
