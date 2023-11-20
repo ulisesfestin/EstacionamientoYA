@@ -42,7 +42,7 @@ export const SignUp = () => {
       }
 
   return (
-    <div className='container-xxl' id='container'>
+    <div className='container-xxl' id='container' style={{ backgroundColor: '#333333' }}>
       <div className='row justify-content-center' id='loginform'> 
         <div className='col'>
         <h1>Create your account</h1>

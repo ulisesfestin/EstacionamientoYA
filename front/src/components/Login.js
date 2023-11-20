@@ -47,7 +47,7 @@ export const Login = () => {
   
 
   return (
-    <div className='container-xxl' id='container'>
+    <div className='container-xxl' id='container' style={{ backgroundColor: '#333333' }}>
       <div className='row justify-content-center' id='loginform'> 
         <div className='col'>
         <h1>Login to EstacionamientoYA</h1>
