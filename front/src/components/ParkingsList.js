@@ -112,7 +112,14 @@ export const ParkingsList = () => {
                                             user.role === '2' ? (
                                                 <div>
                                                     <td> 
-                                                        <button type="button" className="btn btn-success" onClick={() => addBooking(parking.id, parking.price_per_hour)} >Reservar</button>
+                                                        <button 
+                                                            type="button" 
+                                                            className="btn btn-success" 
+                                                            onClick={() => addBooking(parking.id, parking.price_per_hour)} 
+                                                            disabled={!parking.availability} // Deshabilita el botón si parking.availability es false
+                                                        >
+                                                            Reservar
+                                                        </button>
                                                     </td>
                                                 </div>
                                             // admin puede editar y eliminar

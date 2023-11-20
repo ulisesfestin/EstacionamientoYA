@@ -52,7 +52,15 @@ export const ReservationHistory = () => {
         }
     };
 
-    const DeleteBooking = async (booking_id) => {
+    const updateParkingAvailability = async (parkingId) => {
+        try {
+            await axios.put(`http://localhost:5000/parking/${parkingId}`, {availability: true});
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const DeleteBooking = async (booking_id, parking_id) => {
         try {
             await axios.delete(`http://localhost:5000/booking/${booking_id}`);
             $wal.fire({
@@ -61,6 +69,7 @@ export const ReservationHistory = () => {
                 showConfirmButton: false,
                 timer: 1800
             })
+            updateParkingAvailability(parking_id);
             fetchBookings();
         }
         catch (error) {
@@ -100,7 +109,7 @@ export const ReservationHistory = () => {
                                                 <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editBookingModal" onClick={() => EditBooking(booking)}>Edit</button>
                                             </td>
                                             <td> 
-                                                <button type="button" className="btn btn-danger" onClick={() => DeleteBooking(booking.id)}>Delete</button>
+                                                <button type="button" className="btn btn-danger" onClick={() => DeleteBooking(booking.id, booking.parking_id)}>Delete</button>
                                             </td>
                                         </div>
                                         

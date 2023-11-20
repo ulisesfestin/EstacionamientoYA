@@ -51,7 +51,5 @@ class ParkingList(Resource):
         parking.availability = request.json.get('availability', parking.availability)
         parking.price_per_hour = request.json.get('price_per_hour', parking.price_per_hour)
 
-        print(parking.code, parking.availability, parking.price_per_hour)
-
         db.session.commit()
         return jsonify({"mensaje": "Estacionamiento actualizado con éxito."})

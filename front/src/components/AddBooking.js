@@ -26,6 +26,15 @@ export const AddBooking = () => {
         exit:'',
     }
 
+    const updateParkingAvailability = async (parkingId) => {
+        try {
+            await axios.put(`http://localhost:5000/parking/${parkingId}`, {availability: false});
+            navigate('/parkings')
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const handleSubmit = async( values) => {
 
         try {
@@ -37,7 +46,7 @@ export const AddBooking = () => {
                 showConfirmButton: false,
                 timer: 1800
             })
-            navigate('/parkings')
+            updateParkingAvailability(parkingId)
         } catch (error) {
             console.log(error)
         }

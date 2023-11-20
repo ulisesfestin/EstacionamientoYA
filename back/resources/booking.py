@@ -20,7 +20,8 @@ class BookingCRUD(Resource):
                 'parking_code': parking.code,
                 'entry': booking.entry,
                 'exit': booking.exit,
-                'amount': booking.amount
+                'amount': booking.amount,
+                'parking_id': parking.id
             })
         response = jsonify(result)
         response.status_code = 200
@@ -74,7 +75,8 @@ class BookingsList(Resource):
                 'entry': booking.entry,
                 'exit': booking.exit,
                 'amount': booking.amount,
-                'status': booking.status
+                'status': booking.status,
+                'parking_id': parking.id
             })
         response = jsonify(result)
         response.status_code = 200
